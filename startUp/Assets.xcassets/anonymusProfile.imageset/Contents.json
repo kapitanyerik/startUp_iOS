@@ -1,0 +1,21 @@
+{
+  "images" : [
+    {
+      "filename" : "anonymous-mask-vest-men-s-printed-round-neck-vest-232419-1567158564.jpg",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
