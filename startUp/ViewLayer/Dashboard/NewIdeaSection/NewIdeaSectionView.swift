@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 struct NewIdeaSectionView: View {
     @ObservedObject var viewModel: NewIdeaSectionViewModel
     
@@ -15,43 +16,39 @@ struct NewIdeaSectionView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("have you got a new idea?")
-                    .padding(.horizontal)
+                Text("Have you got a new idea?")
+                    .bold()
                     .padding(.top)
                 Spacer()
             }
             TextField("title", text: $viewModel.title)
                 .disableAutocorrection(true)
                 .modifier(GlassField())
+                .padding()
+            
             HStack {
                 Spacer()
-                Button(action: {
+                
+                Button {
                     viewModel.title = ""
-                }) {
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.4), lineWidth: 1)
-                        .frame(width: 80, height: 50)
-                        .overlay(
-                            Text("cancel")
-                                .foregroundColor(.gray)
-                        )
+                } label: {
+                    GlassButton(text: "cancel", maxWidth: 80)
                 }
+                
                 Button(action: {
                     self.navigateToNewIdeaView.toggle()
                 }) {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.green)
-                        .frame(width: 80, height: 50)
-                        .overlay(
-                            Text("next")
-                                .foregroundColor(.white)
-                        )
-                        .padding(.horizontal)
+                    PositiveButton(text: "next")
                 }
             }
-            NavigationLink (destination: viewModel.navigateToNewIdeaView(title: $viewModel.title), isActive: $navigateToNewIdeaView) {
+            NavigationLink (destination: viewModel.navigateToNewIdeaView(title: viewModel.title), isActive: $navigateToNewIdeaView) {
                 EmptyView()
             }
+        }
+        .modifier(GlassModule())
+        .padding()
+        .onAppear {
+            viewModel.title = ""
         }
     }
 }

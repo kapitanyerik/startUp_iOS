@@ -8,10 +8,11 @@
 import SwiftUI
 import Combine
 
+@available(iOS 15.0, *)
 class NewIdeaSectionViewModel: ObservableObject {
     @Published var title: String = ""
     
-    func navigateToNewIdeaView(title: Binding<String>) -> some View {
+    func navigateToNewIdeaView(title: String) -> some View {
         return NewIdeaViewBuilder.makeNewIdeaView(title: title)
     }
 }

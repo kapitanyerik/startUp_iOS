@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 struct IdeaCardView: View {
     @ObservedObject var viewModel: IdeaCardViewModel
     
@@ -15,20 +16,18 @@ struct IdeaCardView: View {
     }
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 12)
-            .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.4), lineWidth: 1)
-            .frame(height: 200)
-            .overlay(
-                VStack {
-                    Text(viewModel.idea.title)
-                        .font(.title2)
-                        .padding()
-                    Text(viewModel.idea.shortDescription)
-                        .font(.body)
-                        .lineLimit(3)
-                        .padding()
-                }
-            )
-            .padding()
+        VStack (alignment: .center) {
+            Text(viewModel.idea.title)
+                .font(.title2)
+                .bold()
+                .padding()
+            
+            Text(viewModel.idea.shortDescription)
+                .font(.body)
+                .lineLimit(3)
+                .padding(.bottom)
+        }
+        .foregroundColor(.primary.opacity(0.35))
+        .foregroundStyle(.ultraThinMaterial)
     }
 }
