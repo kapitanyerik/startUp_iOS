@@ -13,10 +13,9 @@ struct GlassModule : ViewModifier {
             content
                 .padding()
                 .background(.ultraThinMaterial)
-                .foregroundColor(Color.primary.opacity(0.35))
+                .foregroundColor(.primary.opacity(0.35))
                 .foregroundStyle(.ultraThinMaterial)
                 .cornerRadius(24)
-                .padding()
         } else {
             // Fallback on earlier versions
             content

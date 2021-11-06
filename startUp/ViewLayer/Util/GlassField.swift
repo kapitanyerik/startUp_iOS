@@ -12,7 +12,6 @@ struct GlassField : ViewModifier {
         if #available(iOS 15.0, *) {
             content
                 .padding()
-                .frame(height: 50)
                 .background(.ultraThinMaterial)
                 .cornerRadius(12)
         } else {

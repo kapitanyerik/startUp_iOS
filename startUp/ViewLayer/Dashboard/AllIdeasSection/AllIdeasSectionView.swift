@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 struct AllIdeasSectionView: View {
     @ObservedObject var viewModel: AllIdeasSectionViewModel
     
@@ -19,29 +20,25 @@ struct AllIdeasSectionView: View {
     var body: some View {
         VStack {
             HStack {
-                Text("the list of your all ideas")
+                Text("The list of your all ideas")
+                    .bold()
                     .padding(.vertical)
                 Spacer()
             }
             HStack {
                 Spacer()
-                Button(action: {
+                Button {
                     self.navigateToAllIdeasView = true
-                }) {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color.green)
-                        .frame(width: 80, height: 50)
-                        .overlay(
-                            Text("show")
-                                .foregroundColor(.white)
-                        )
-                        .padding(.horizontal)
+                } label: {
+                    PositiveButton(text: "show")
                 }
-                .padding(.bottom)
             }
+            
             NavigationLink (destination: viewModel.navigateToAllIdeasView(), isActive: $navigateToAllIdeasView) {
                 EmptyView()
             }
         }
+        .modifier(GlassModule())
+        .padding()
     }
 }

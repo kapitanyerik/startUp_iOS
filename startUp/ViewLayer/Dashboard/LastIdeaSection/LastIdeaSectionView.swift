@@ -15,38 +15,36 @@ struct LastIdeaSectionView: View {
     }
     
     var body: some View {
-        VStack (alignment: .leading) {
-            HStack {
-                Text("your last idea")
-                    .padding(.horizontal)
-                    .padding(.top)
-                Spacer()
+        VStack {
+            VStack {
+                HStack {
+                    Text("Your last idea")
+                        .bold()
+                        .padding(.vertical)
+                    Spacer()
+                }
+                
+                VStack {
+                    Text(viewModel.lastIdea?.title ?? "")
+                        .font(.title2)
+                        .bold()
+                    Text(viewModel.lastIdea?.shortDescription ?? "")
+                        .font(.body)
+                        .lineLimit(3)
+                        .multilineTextAlignment(.center)
+                        .padding()
+                }
             }
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.4), lineWidth: 1)
-                .padding(.top)
-                .padding(.horizontal)
-                .frame(height: 240)
-                .overlay(
-                    VStack {
-                        Text(viewModel.lastIdea?.title ?? "")
-                            .font(.title2)
-                            .padding()
-                        Text(viewModel.lastIdea?.shortDescription ?? "")
-                            .font(.body)
-                            .lineLimit(3)
-                            .padding()
-                    }
-                    .padding()
-                )
-            HStack (alignment: .bottom, spacing: 32, content: {
+            .modifier(GlassModule())
+            .padding(.top)
+            .padding(.horizontal)
+            
+            HStack (spacing: 60) {
                 StatusIndicator(status: viewModel.lastIdea?.state.creation ?? Status.notStarted)
                 StatusIndicator(status: viewModel.lastIdea?.state.internalChallenging ?? Status.notStarted)
                 StatusIndicator(status: viewModel.lastIdea?.state.challenging ?? Status.notStarted)
-                Spacer()
-            })
-            .padding(.horizontal)
-            .padding(.leading)
+            }
+            .padding(.bottom)
         }
         .onAppear { viewModel.loadLastIdea() }
     }
@@ -58,10 +56,10 @@ struct StatusIndicator: View {
     var body: some View {
         VStack {
             StatusIndicatorTwine()
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.6), style: StrokeStyle(lineCap: .round))
+                .stroke(.white.opacity(0.2), style: StrokeStyle(lineCap: .round))
                 .frame(width: 20, height: 20)
             Circle()
-                .stroke(Color(.sRGB, red: 150/255, green: 150/255, blue: 150/255, opacity: 0.8))
+                .stroke(.white.opacity(0.35))
                 .frame(width: 40, height: 40)
                 .overlay(
                     getIconByStatus(status: status)
@@ -75,25 +73,25 @@ struct StatusIndicator: View {
             
             path.move(to: CGPoint(x: rect.midX, y: rect.minY))
             path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
-
+            
             return path
         }
     }
     
     func getIconByStatus(status: Status) -> some View {
         switch status {
-            case .notStarted: do {
-                return Image(systemName: "seal").foregroundColor(.blue)
-            }
-            case .pending: do {
-                return Image(systemName: "seal.fill").foregroundColor(.blue)
-            }
-            case .successful: do {
-                return Image(systemName: "checkmark.seal.fill").foregroundColor(.green)
-            }
-            case .failed: do {
-                return Image(systemName: "xmark.seal.fill").foregroundColor(.red)
-            }
+        case .notStarted: do {
+            return Image(systemName: "seal").foregroundColor(.white.opacity(0.5))
+        }
+        case .pending: do {
+            return Image(systemName: "seal.fill").foregroundColor(.white.opacity(0.5))
+        }
+        case .successful: do {
+            return Image(systemName: "checkmark.seal.fill").foregroundColor(.green)
+        }
+        case .failed: do {
+            return Image(systemName: "xmark.seal.fill").foregroundColor(.red)
+        }
         }
     }
 }

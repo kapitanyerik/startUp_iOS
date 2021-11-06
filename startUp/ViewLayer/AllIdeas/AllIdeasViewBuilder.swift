@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 enum AllIdeasViewBuilder {
     static func makeAllIdeasView() -> some View {
         let viewModel = AllIdeasViewModel()

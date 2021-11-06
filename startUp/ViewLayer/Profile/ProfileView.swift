@@ -13,88 +13,85 @@ struct ProfileView: View {
     var body: some View {
         if #available(iOS 15.0, *) {
             ZStack {
-                LinearGradient(
-                    colors: [.black, Color("darkGray")],
-                    startPoint: .top,
-                    endPoint: .bottom
-                )
+                Background()
                     .edgesIgnoringSafeArea(.all)
                 
-                Image("Asset 10")
+                Image("asset1")
                     .resizable()
-                    .frame(width: 380, height: 250)
-                    .offset(x: 0, y: -290)
+                    .frame(width: 220, height: 160)
+                    .offset(x: -50, y: -300)
+                
+                Image("asset4")
+                    .resizable()
+                    .frame(width: 160, height: 160)
+                    .offset(x: -80, y: 240)
                 
                 VStack {
-                    VStack {
-                        Image("anonymusProfile")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 120, height: 120)
-                            .clipShape(Circle())
-                            .padding()
-                        
-                        Text(viewModel.email)
-                            .font(.title)
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                        
-                    }
-                    .modifier(GlassModule())
+                    ProfilePictureAndNameModule(viewModel: viewModel)
+                        .modifier(GlassModule())
+                        .padding()
                     
                     ZStack {
-                        Image("Asset 3")
+                        Image("asset3")
                             .resizable()
-                            .frame(width: 160, height: 160)
-                            .offset(x: 110, y: -120)
+                            .frame(width: 130, height: 110)
+                            .offset(x: 125, y: -145)
                         
-                        VStack {
-                            Button {
-                                viewModel.logout()
-                            } label: {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke()
-                                    .frame(maxWidth: .infinity, maxHeight: 50)
-                                    .overlay {
-                                        Text("Edit personal data")
-                                            .bold()
-                                    }
-                                    .padding(.bottom, 12)
-                                    .padding(.top, 12)
-                            }
-                            
-                            Button {
-                                viewModel.logout()
-                            } label: {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke()
-                                    .frame(maxWidth: .infinity, maxHeight: 50)
-                                    .overlay {
-                                        Text("Change password")
-                                            .bold()
-                                    }
-                                    .padding(.bottom, 12)
-                                    .padding(.top, 12)
-                            }
-                            
-                            Button {
-                                viewModel.logout()
-                            } label: {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke()
-                                    .frame(maxWidth: .infinity, maxHeight: 50)
-                                    .overlay {
-                                        Text("Logout")
-                                            .bold()
-                                    }
-                                    .padding(.bottom, 12)
-                                    .padding(.top, 12)
-                            }
-                        }
-                        .modifier(GlassModule())
+                        ProfileButtonsModule(viewModel: viewModel)
+                            .modifier(GlassModule())
+                            .padding()
                     }
                 }
             }
-            .preferredColorScheme(.dark)
+        }
+    }
+}
+
+struct ProfilePictureAndNameModule: View {
+    @ObservedObject var viewModel: ProfileViewModel
+    
+    var body: some View {
+        VStack {
+            Image("anonymusProfile")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 120, height: 120)
+                .clipShape(Circle())
+                .padding()
+            
+            Text(viewModel.email)
+                .font(.title)
+                .bold()
+                .frame(maxWidth: .infinity)
+                .padding()
+        }
+    }
+}
+
+@available(iOS 15.0, *)
+struct ProfileButtonsModule: View {
+    @ObservedObject var viewModel: ProfileViewModel
+    
+    var body: some View {
+        VStack {
+            Button {
+                viewModel.logout()
+            } label: {
+                GlassButton(text: "Edit personal data")
+            }
+            
+            Button {
+                viewModel.logout()
+            } label: {
+                GlassButton(text: "Change password")
+            }
+            
+            Button {
+                viewModel.logout()
+            } label: {
+                GlassButton(text: "Logout")
+                    .padding(.bottom)
+            }
         }
     }
 }

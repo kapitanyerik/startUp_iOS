@@ -8,6 +8,7 @@
 import Combine
 import SwiftUI
 
+@available(iOS 15.0, *)
 class AllIdeasSectionViewModel: ObservableObject {
     
     func navigateToAllIdeasView() -> some View {

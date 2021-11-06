@@ -7,9 +7,10 @@
 
 import SwiftUI
 
+@available(iOS 15.0, *)
 enum NewIdeaViewBuilder {
     static func makeNewIdeaView(
-        title: Binding<String>
+        title: String
     ) -> some View {
         let viewModel = NewIdeaViewModel(title: title)
         return NewIdeaView(viewModel: viewModel)

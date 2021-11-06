@@ -12,22 +12,21 @@ import FirebaseFirestoreSwift
 import Combine
 
 class NewIdeaViewModel: ObservableObject {
-    
-    var title: Binding<String>
+    @Published var title: String
     @Published var shortDescription: String = ""
     @Published var description: String = ""
     
     @Published var descriptionFieldIsVisible: Bool = false
     
-    init(title: Binding<String>) {
+    init(title: String) {
         self.title = title
     }
     
     func createNewIdea() {
         var ideaToCreate = Idea()
         
-        ideaToCreate.title = self.title.wrappedValue
-        self.title.wrappedValue = ""
+        ideaToCreate.title = self.title
+        self.title = ""
         
         ideaToCreate.shortDescription = self.shortDescription
         ideaToCreate.state.creation = Status.successful
@@ -36,6 +35,7 @@ class NewIdeaViewModel: ObservableObject {
         IdeaInteractor.instance.createNewIdea(newIdea: ideaToCreate)
     }
     
+    @available(iOS 15.0, *)
     func navigateToDashboardView() -> some View {
         return DashboardViewBuilder.makeDashboardView()
     }
