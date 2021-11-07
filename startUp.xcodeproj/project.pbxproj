@@ -60,6 +60,7 @@
 		0BF74F7D27247A260037D310 /* PositiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F7C27247A260037D310 /* PositiveButton.swift */; };
 		0BF74F7F2725A12E0037D310 /* MultilineGlassField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F7E2725A12E0037D310 /* MultilineGlassField.swift */; };
 		0BF74F9D2737EEE20037D310 /* RemoveItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F9C2737EEE10037D310 /* RemoveItemButton.swift */; };
+		0BF74F9F2738511A0037D310 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F9E2738511A0037D310 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,7 @@
 		0BF74F7C27247A260037D310 /* PositiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveButton.swift; sourceTree = "<group>"; };
 		0BF74F7E2725A12E0037D310 /* MultilineGlassField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineGlassField.swift; sourceTree = "<group>"; };
 		0BF74F9C2737EEE10037D310 /* RemoveItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemButton.swift; sourceTree = "<group>"; };
+		0BF74F9E2738511A0037D310 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				0BF74F7A2724778E0037D310 /* GlassButton.swift */,
 				0BF74F7C27247A260037D310 /* PositiveButton.swift */,
 				0BF74F7E2725A12E0037D310 /* MultilineGlassField.swift */,
+				0BF74F9E2738511A0037D310 /* ImagePicker.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -440,6 +443,7 @@
 				0BF74F9D2737EEE20037D310 /* RemoveItemButton.swift in Sources */,
 				0B7647992614E9A70072E959 /* startUpApp.swift in Sources */,
 				0B7647DE26150CAE0072E959 /* IdeaCardViewModel.swift in Sources */,
+				0BF74F9F2738511A0037D310 /* ImagePicker.swift in Sources */,
 				0B391F0326FE510E00E49A4C /* GlassField.swift in Sources */,
 				0B7647AA2614EA320072E959 /* Idea.swift in Sources */,
 				0B391F0927022C5500E49A4C /* User.swift in Sources */,

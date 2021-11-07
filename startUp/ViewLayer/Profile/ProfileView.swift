@@ -47,17 +47,45 @@ struct ProfileView: View {
     }
 }
 
+@available(iOS 15.0, *)
 struct ProfilePictureAndNameModule: View {
     @ObservedObject var viewModel: ProfileViewModel
     
+    @State private var image: Image?
+    
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
     var body: some View {
         VStack {
-            Image("anonymusProfile")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 120, height: 120)
-                .clipShape(Circle())
-                .padding()
+            ZStack (alignment: .bottomTrailing) {
+                if (image != nil) {
+                    image?
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 120, height: 120)
+                        .clipShape(Circle())
+                        .padding()
+                } else {
+                    Image("anonymusProfile")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 120, height: 120)
+                        .clipShape(Circle())
+                        .padding()
+                }
+                
+                Button {
+                    showingImagePicker = true
+                } label: {
+                    Image(systemName: "pencil.circle.fill")
+                        .resizable()
+                        .frame(width: 32, height: 32)
+                        .foregroundColor(.white)
+                        .offset(x: -16, y: -16)
+                        .shadow(color: .gray, radius: 5, x: 5, y: 5)
+                }
+            }
             
             Text(viewModel.email)
                 .font(.title)
@@ -65,6 +93,14 @@ struct ProfilePictureAndNameModule: View {
                 .frame(maxWidth: .infinity)
                 .padding()
         }
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage)
+        }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
 }
 
