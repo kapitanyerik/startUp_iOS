@@ -12,34 +12,24 @@ struct AllIdeasView: View {
     @ObservedObject var viewModel: AllIdeasViewModel
     
     var body: some View {
-        UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
-        
-        return ZStack {
+        ZStack {
             Background()
                 .edgesIgnoringSafeArea(.all)
-            
-            List {
-                ForEach(viewModel.ideas) { idea in
-                    IdeaCardView(viewModel: IdeaCardViewModel(idea: idea))
-                        .frame(idealHeight: 160)
-                        .listRowBackground(VisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterial)))
-                        .padding()
+            ScrollView {
+                VStack {
+                    ForEach(viewModel.ideas) { idea in
+                        IdeaCardView(viewModel: IdeaCardViewModel(idea: idea))
+                    }
+                    .onDelete(perform: delete)
+                    
+                    Spacer()
                 }
-                .onDelete(perform: delete)
             }
-            .listRowSeparator(.hidden)
-            .onAppear { viewModel.loadIdeas() }
         }
+        .onAppear { viewModel.loadIdeas() }
     }
     
     private func delete(at offsets: IndexSet) {
         offsets.map { viewModel.ideas[$0] }.forEach(viewModel.remove)
     }
-}
-
-struct VisualEffectView: UIViewRepresentable {
-    var effect: UIVisualEffect?
-    func makeUIView(context: UIViewRepresentableContext<Self>) -> UIVisualEffectView { UIVisualEffectView() }
-    func updateUIView(_ uiView: UIVisualEffectView, context: UIViewRepresentableContext<Self>) { uiView.effect = effect }
 }

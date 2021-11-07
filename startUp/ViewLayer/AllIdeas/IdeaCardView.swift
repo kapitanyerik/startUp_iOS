@@ -27,7 +27,7 @@ struct IdeaCardView: View {
                 .lineLimit(3)
                 .padding(.bottom)
         }
-        .foregroundColor(.primary.opacity(0.35))
-        .foregroundStyle(.ultraThinMaterial)
+        .modifier(GlassModule())
+        .padding()
     }
 }
