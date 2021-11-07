@@ -17,17 +17,22 @@ struct IdeaCardView: View {
     
     var body: some View {
         VStack (alignment: .center) {
-            Text(viewModel.idea.title)
-                .font(.title2)
-                .bold()
-                .padding()
-            
+            HStack {
+                Spacer()
+                
+                Text(viewModel.idea.title)
+                    .font(.title2)
+                    .bold()
+                    .padding()
+                
+                Spacer()
+            }
+
             Text(viewModel.idea.shortDescription)
                 .font(.body)
                 .lineLimit(3)
                 .padding(.bottom)
         }
         .modifier(GlassModule())
-        .padding()
     }
 }

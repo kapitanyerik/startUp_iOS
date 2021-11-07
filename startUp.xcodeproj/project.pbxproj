@@ -59,6 +59,7 @@
 		0BF74F7B2724778E0037D310 /* GlassButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F7A2724778E0037D310 /* GlassButton.swift */; };
 		0BF74F7D27247A260037D310 /* PositiveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F7C27247A260037D310 /* PositiveButton.swift */; };
 		0BF74F7F2725A12E0037D310 /* MultilineGlassField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F7E2725A12E0037D310 /* MultilineGlassField.swift */; };
+		0BF74F9D2737EEE20037D310 /* RemoveItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF74F9C2737EEE10037D310 /* RemoveItemButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -111,6 +112,7 @@
 		0BF74F7A2724778E0037D310 /* GlassButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassButton.swift; sourceTree = "<group>"; };
 		0BF74F7C27247A260037D310 /* PositiveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PositiveButton.swift; sourceTree = "<group>"; };
 		0BF74F7E2725A12E0037D310 /* MultilineGlassField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineGlassField.swift; sourceTree = "<group>"; };
+		0BF74F9C2737EEE10037D310 /* RemoveItemButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveItemButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +339,7 @@
 			children = (
 				0B7647D926150C1B0072E959 /* IdeaCardView.swift */,
 				0B7647DD26150CAE0072E959 /* IdeaCardViewModel.swift */,
+				0BF74F9C2737EEE10037D310 /* RemoveItemButton.swift */,
 				0B7647B42614F6AA0072E959 /* AllIdeasView.swift */,
 				0B491ED4264C746E005C7606 /* AllIdeasViewBuilder.swift */,
 				0B7647D6261506A50072E959 /* AllIdeasViewModel.swift */,
@@ -434,6 +437,7 @@
 				0B491ED5264C746E005C7606 /* AllIdeasViewBuilder.swift in Sources */,
 				0B76479B2614E9A70072E959 /* DashboardView.swift in Sources */,
 				0B391F0526FE5AEB00E49A4C /* SignUpViewBuilder.swift in Sources */,
+				0BF74F9D2737EEE20037D310 /* RemoveItemButton.swift in Sources */,
 				0B7647992614E9A70072E959 /* startUpApp.swift in Sources */,
 				0B7647DE26150CAE0072E959 /* IdeaCardViewModel.swift in Sources */,
 				0B391F0326FE510E00E49A4C /* GlassField.swift in Sources */,

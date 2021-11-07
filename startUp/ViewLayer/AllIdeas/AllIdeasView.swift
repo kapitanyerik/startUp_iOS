@@ -17,16 +17,25 @@ struct AllIdeasView: View {
                 .edgesIgnoringSafeArea(.all)
             ScrollView {
                 VStack {
-                    ForEach(viewModel.ideas) { idea in
-                        IdeaCardView(viewModel: IdeaCardViewModel(idea: idea))
+                    ForEach(viewModel.ideas.indices, id: \.self) { indexOfIdea in
+                        ZStack (alignment: .topTrailing) {
+                            IdeaCardView(viewModel: IdeaCardViewModel(idea: viewModel.ideas[indexOfIdea]))
+                            
+                            RemoveItemButton(onDelete: delete, index: indexOfIdea)
+                                .padding()
+                        }
+                        .padding()
                     }
-                    .onDelete(perform: delete)
                     
                     Spacer()
                 }
             }
         }
         .onAppear { viewModel.loadIdeas() }
+        .toolbar {
+            EditButton()
+                .foregroundColor(.white)
+        }
     }
     
     private func delete(at offsets: IndexSet) {
