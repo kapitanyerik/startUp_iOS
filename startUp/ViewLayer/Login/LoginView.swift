@@ -132,10 +132,6 @@ struct LoginView: View {
     }
 }
 
-enum Direction {
-    case up, down
-}
-
 struct LoginInputModule: View {
     @ObservedObject var viewModel: LoginViewModel
     
@@ -200,6 +196,3 @@ struct LoginButtonsModule: View {
         }
     }
 }
-
-
-
