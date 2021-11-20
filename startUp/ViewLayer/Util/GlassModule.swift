@@ -9,19 +9,11 @@ import SwiftUI
 
 struct GlassModule : ViewModifier {
     func body(content: Content) -> some View {
-        if #available(iOS 15.0, *) {
-            content
-                .padding()
-                .background(.ultraThinMaterial)
-                .foregroundColor(.primary.opacity(0.35))
-                .foregroundStyle(.ultraThinMaterial)
-                .cornerRadius(24)
-        } else {
-            // Fallback on earlier versions
-            content
-                .padding()
-                .frame(height: 50)
-                .cornerRadius(14)
-        }
+        content
+            .padding()
+            .background(.ultraThinMaterial)
+            .foregroundColor(.primary.opacity(0.35))
+            .foregroundStyle(.ultraThinMaterial)
+            .cornerRadius(24)
     }
 }

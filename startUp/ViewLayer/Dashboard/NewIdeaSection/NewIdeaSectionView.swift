@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct NewIdeaSectionView: View {
     @ObservedObject var viewModel: NewIdeaSectionViewModel
     

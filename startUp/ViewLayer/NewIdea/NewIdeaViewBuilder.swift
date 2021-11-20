@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 enum NewIdeaViewBuilder {
     static func makeNewIdeaView(
         title: String

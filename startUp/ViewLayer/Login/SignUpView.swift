@@ -11,70 +11,68 @@ struct SignUpView: View {
     @ObservedObject var viewModel: SignUpViewModel
     
     var body: some View {
-        if #available(iOS 15.0, *) {
-            ZStack {
-                Background()
-                    .edgesIgnoringSafeArea(.all)
+        ZStack {
+            Background()
+                .edgesIgnoringSafeArea(.all)
+            
+            Image("asset3")
+                .resizable()
+                .frame(width: 120, height: 112)
+                .rotationEffect(.degrees(25))
+                .offset(x: 105, y: 60)
+            
+            Image("asset6")
+                .resizable()
+                .frame(width: 100, height: 100)
+                .offset(x: 125, y: -200)
+            
+            Image("asset1")
+                .resizable()
+                .frame(width: 340, height: 250)
+                .offset(x: -160, y: 140)
+            
+            VStack {
+                Text("Sign up")
+                    .font(.largeTitle)
+                    .bold()
+                    .frame(maxWidth : .infinity, alignment: .leading)
+                    .padding(.top)
+                    .foregroundColor(Color.primary.opacity(0.4))
                 
-                Image("asset3")
-                    .resizable()
-                    .frame(width: 120, height: 112)
-                    .rotationEffect(.degrees(25))
-                    .offset(x: 105, y: 60)
-                
-                Image("asset6")
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .offset(x: 125, y: -200)
-                
-                Image("asset1")
-                    .resizable()
-                    .frame(width: 340, height: 250)
-                    .offset(x: -160, y: 140)
-                
-                VStack {
-                    Text("Sign up")
-                        .font(.largeTitle)
-                        .bold()
-                        .frame(maxWidth : .infinity, alignment: .leading)
-                        .padding(.top)
-                        .foregroundColor(Color.primary.opacity(0.4))
+                Text("Create a new account")
+                    .font(.callout)
+                    .frame(maxWidth : .infinity, alignment: .leading)
+                                
+                VStack (spacing: 12) {
+                    TextField("Enter email", text: $viewModel.email)
+                        .modifier(GlassField())
                     
-                    Text("Create a new account")
-                        .font(.callout)
-                        .frame(maxWidth : .infinity, alignment: .leading)
-                                    
-                    VStack (spacing: 12) {
-                        TextField("Enter email", text: $viewModel.email)
-                            .modifier(GlassField())
-                        
-                        
-                        SecureField("Enter password", text: $viewModel.password)
-                            .modifier(GlassField())
-                        
-                        
-                        SecureField("Re-enter password", text: $viewModel.passwordAgain)
-                            .modifier(GlassField())
-                    }
-                    .padding()
-                            
-                    Button {
-                        viewModel.signUp()
-                    } label: {
-                        Text("Sign up")
-                            .bold()
-                            .padding()
-                    }
                     
+                    SecureField("Enter password", text: $viewModel.password)
+                        .modifier(GlassField())
+                    
+                    
+                    SecureField("Re-enter password", text: $viewModel.passwordAgain)
+                        .modifier(GlassField())
                 }
-                .modifier(GlassModule())
                 .padding()
+                        
+                Button {
+                    viewModel.signUp()
+                } label: {
+                    Text("Sign up")
+                        .bold()
+                        .padding()
+                }
                 
-                Image("asset5")
-                    .resizable()
-                    .frame(width: 200, height: 160)
-                    .offset(x: -70, y: -260)
             }
+            .modifier(GlassModule())
+            .padding()
+            
+            Image("asset5")
+                .resizable()
+                .frame(width: 200, height: 160)
+                .offset(x: -70, y: -260)
         }
     }
 }

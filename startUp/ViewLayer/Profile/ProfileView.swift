@@ -6,52 +6,51 @@
 //
 
 import SwiftUI
+import FirebaseStorage
 
 struct ProfileView: View {
     @ObservedObject var viewModel: ProfileViewModel
     
     var body: some View {
-        if #available(iOS 15.0, *) {
-            ZStack {
-                Background()
-                    .edgesIgnoringSafeArea(.all)
+        ZStack {
+            Background()
+                .edgesIgnoringSafeArea(.all)
+            
+            Image("asset1")
+                .resizable()
+                .frame(width: 220, height: 160)
+                .offset(x: -50, y: -300)
+            
+            Image("asset4")
+                .resizable()
+                .frame(width: 160, height: 160)
+                .offset(x: -80, y: 240)
+            
+            VStack {
+                ProfilePictureAndNameModule(viewModel: viewModel)
+                    .modifier(GlassModule())
+                    .padding()
                 
-                Image("asset1")
-                    .resizable()
-                    .frame(width: 220, height: 160)
-                    .offset(x: -50, y: -300)
-                
-                Image("asset4")
-                    .resizable()
-                    .frame(width: 160, height: 160)
-                    .offset(x: -80, y: 240)
-                
-                VStack {
-                    ProfilePictureAndNameModule(viewModel: viewModel)
+                ZStack {
+                    Image("asset3")
+                        .resizable()
+                        .frame(width: 130, height: 110)
+                        .offset(x: 125, y: -145)
+                    
+                    ProfileButtonsModule(viewModel: viewModel)
                         .modifier(GlassModule())
                         .padding()
-                    
-                    ZStack {
-                        Image("asset3")
-                            .resizable()
-                            .frame(width: 130, height: 110)
-                            .offset(x: 125, y: -145)
-                        
-                        ProfileButtonsModule(viewModel: viewModel)
-                            .modifier(GlassModule())
-                            .padding()
-                    }
                 }
             }
         }
     }
 }
 
-@available(iOS 15.0, *)
 struct ProfilePictureAndNameModule: View {
     @ObservedObject var viewModel: ProfileViewModel
+    @ObservedObject var interactor = ProfileInteractor.instance
     
-    @State private var image: Image?
+    @State private var profilePicture: Image?
     
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
@@ -59,8 +58,8 @@ struct ProfilePictureAndNameModule: View {
     var body: some View {
         VStack {
             ZStack (alignment: .bottomTrailing) {
-                if (image != nil) {
-                    image?
+                if (profilePicture != nil) {
+                    profilePicture?
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 120, height: 120)
@@ -93,18 +92,21 @@ struct ProfilePictureAndNameModule: View {
                 .frame(maxWidth: .infinity)
                 .padding()
         }
-        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-            ImagePicker(image: self.$inputImage)
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImageFromLocal) {
+            ImagePicker(image: $inputImage)
+        }
+        .onAppear {
+            self.profilePicture = interactor.profilePicture
         }
     }
     
-    func loadImage() {
+    func loadImageFromLocal() {
         guard let inputImage = inputImage else { return }
-        image = Image(uiImage: inputImage)
+        profilePicture = Image(uiImage: inputImage)
+        interactor.uploadImage(image: inputImage)
     }
 }
 
-@available(iOS 15.0, *)
 struct ProfileButtonsModule: View {
     @ObservedObject var viewModel: ProfileViewModel
     

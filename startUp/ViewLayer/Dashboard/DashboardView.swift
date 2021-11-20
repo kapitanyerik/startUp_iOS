@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct DashboardView: View {
     @ObservedObject var viewModel: DashboardViewModel
     @ObservedObject var authenticationInteractor = AuthenticationInteractor.instance
+    @ObservedObject var profileInteractor = ProfileInteractor.instance
     
     @State var navigateToProfile = false
     @State var navigateToSettings = false
@@ -53,6 +53,9 @@ struct DashboardView: View {
             .navigationAppearance(tintColor: .white)
             .fullScreenCover(isPresented: $authenticationInteractor.session.isUserLoggedIn.not) {
                 LoginView(viewModel: LoginViewModel())
+            }
+            .onAppear {
+                profileInteractor.downloadImage()
             }
         }
     }

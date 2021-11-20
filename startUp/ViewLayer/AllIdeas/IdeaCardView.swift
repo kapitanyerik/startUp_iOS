@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct IdeaCardView: View {
     @ObservedObject var viewModel: IdeaCardViewModel
     

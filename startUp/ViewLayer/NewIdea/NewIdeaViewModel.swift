@@ -35,7 +35,6 @@ class NewIdeaViewModel: ObservableObject {
         IdeaInteractor.instance.createNewIdea(newIdea: ideaToCreate)
     }
     
-    @available(iOS 15.0, *)
     func navigateToDashboardView() -> some View {
         return DashboardViewBuilder.makeDashboardView()
     }

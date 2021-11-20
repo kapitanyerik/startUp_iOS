@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import Combine
 
 class IdeaInteractor: ObservableObject {
-    private let path = "myIdeas"
+    private let path = NSLocalizedString("myIdeas", comment: "")
     private let firestore = Firestore.firestore()
     
     private var authenticationInteractor = AuthenticationInteractor.instance

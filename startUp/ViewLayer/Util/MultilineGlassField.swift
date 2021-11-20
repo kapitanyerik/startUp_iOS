@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct MultiLineGlassField: View {
     var text: Binding<String>
     var placeholder: String

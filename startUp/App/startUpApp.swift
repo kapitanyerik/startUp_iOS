@@ -8,7 +8,6 @@
 import SwiftUI
 import Firebase
 
-@available(iOS 15.0, *)
 @main
 struct startUpApp: App {
     

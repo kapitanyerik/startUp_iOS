@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
 struct GlassButton: View {
     var text: String
     var maxWidth: CGFloat? = nil

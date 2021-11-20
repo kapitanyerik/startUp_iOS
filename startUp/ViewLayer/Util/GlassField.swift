@@ -9,17 +9,9 @@ import SwiftUI
 
 struct GlassField : ViewModifier {
     func body(content: Content) -> some View {
-        if #available(iOS 15.0, *) {
-            content
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(12)
-        } else {
-            // Fallback on earlier versions
-            content
-                .padding()
-                .frame(height: 50)
-                .cornerRadius(14)
-        }
+        content
+            .padding()
+            .background(.ultraThinMaterial)
+            .cornerRadius(12)
     }
 }
