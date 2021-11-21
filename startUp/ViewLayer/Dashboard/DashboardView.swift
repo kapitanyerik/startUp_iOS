@@ -15,11 +15,6 @@ struct DashboardView: View {
     @State var navigateToProfile = false
     @State var navigateToSettings = false
     
-    init(viewModel: DashboardViewModel) {
-        self.viewModel = viewModel
-        self.authenticationInteractor.listen()
-    }
-    
     var body: some View {
         NavigationView {
             ZStack {

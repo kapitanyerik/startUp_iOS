@@ -11,12 +11,10 @@ import CoreImage
 
 class AuthenticationInteractor: ObservableObject {
     @Published var session: UserSession = UserSession(isUserLoggedIn: false, user: nil)
-        
-    static let instance = AuthenticationInteractor()
-
-    private init() {}
     
-    func listen() {
+    static let instance = AuthenticationInteractor()
+    
+    private init() {
         Auth.auth().addStateDidChangeListener({ auth, user in
             if let user = user {
                 self.session = UserSession(
@@ -28,7 +26,7 @@ class AuthenticationInteractor: ObservableObject {
             }
         })
     }
-
+    
     func signIn(email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password)
     }
