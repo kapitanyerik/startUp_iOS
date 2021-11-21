@@ -10,14 +10,14 @@ import Combine
 import CoreImage
 
 class AuthenticationInteractor: ObservableObject {
-    static let instance = AuthenticationInteractor()
-        
     @Published var session: UserSession = UserSession(isUserLoggedIn: false, user: nil)
-    
-    var authStateListener: AuthStateDidChangeListenerHandle?
+        
+    static let instance = AuthenticationInteractor()
+
+    private init() {}
     
     func listen() {
-        authStateListener = Auth.auth().addStateDidChangeListener({ auth, user in
+        Auth.auth().addStateDidChangeListener({ auth, user in
             if let user = user {
                 self.session = UserSession(
                     isUserLoggedIn: true,
@@ -56,12 +56,6 @@ class AuthenticationInteractor: ObservableObject {
             return
         } catch {
             return
-        }
-    }
-    
-    func unbind() {
-        if let authStateListener = authStateListener {
-            Auth.auth().removeStateDidChangeListener(authStateListener)
         }
     }
 }
