@@ -13,15 +13,13 @@ import Combine
 
 class LastIdeaSectionViewModel: ObservableObject {
     @Published var lastIdea: Idea? = Idea()
-    private var cancellables: Set<AnyCancellable> = []
+    @ObservedObject var ideaInteractor = IdeaInteractor.instance
     
     init() {
-        IdeaInteractor.instance.$lastIdea
-            .assign(to: \.lastIdea, on: self)
-            .store(in: &cancellables)
+        self.lastIdea = ideaInteractor.lastIdea
     }
     
     func loadLastIdea() {
-        IdeaInteractor.instance.loadLastIdea()
+        ideaInteractor.loadLastIdea()
     }
 }

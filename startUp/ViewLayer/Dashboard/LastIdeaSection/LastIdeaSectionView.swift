@@ -10,10 +10,6 @@ import SwiftUI
 struct LastIdeaSectionView: View {
     @ObservedObject var viewModel: LastIdeaSectionViewModel
     
-    init(viewModel: LastIdeaSectionViewModel) {
-        self.viewModel = viewModel
-    }
-    
     var body: some View {
         VStack {
             VStack {

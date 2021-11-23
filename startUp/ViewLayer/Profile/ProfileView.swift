@@ -48,7 +48,6 @@ struct ProfileView: View {
 
 struct ProfilePictureAndNameModule: View {
     @ObservedObject var viewModel: ProfileViewModel
-    @ObservedObject var interactor = ProfileInteractor.instance
     
     @State private var profilePicture: Image?
     
@@ -58,21 +57,12 @@ struct ProfilePictureAndNameModule: View {
     var body: some View {
         VStack {
             ZStack (alignment: .bottomTrailing) {
-                if (profilePicture != nil) {
-                    profilePicture?
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 120, height: 120)
-                        .clipShape(Circle())
-                        .padding()
-                } else {
-                    Image("anonymusProfile")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(width: 120, height: 120)
-                        .clipShape(Circle())
-                        .padding()
-                }
+                profilePicture?
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 120, height: 120)
+                    .clipShape(Circle())
+                    .padding()
                 
                 Button {
                     showingImagePicker = true
@@ -96,14 +86,14 @@ struct ProfilePictureAndNameModule: View {
             ImagePicker(image: $inputImage)
         }
         .onAppear {
-            self.profilePicture = interactor.profilePicture
+            self.profilePicture = viewModel.profilePicture
         }
     }
     
     func loadImageFromLocal() {
         guard let inputImage = inputImage else { return }
         profilePicture = Image(uiImage: inputImage)
-        interactor.uploadImage(image: inputImage)
+        viewModel.uploadImage(image: inputImage)
     }
 }
 
